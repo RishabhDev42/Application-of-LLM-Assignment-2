@@ -1,0 +1,11 @@
+datasets
+transformers
+sentence-transformers
+pymilvus
+ragas
+ydata-profiling
+pymilvus[milvus_lite]
+google-generativeai
+evaluate
+openai
+langchain-openai
