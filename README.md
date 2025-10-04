@@ -132,11 +132,11 @@ This indicates diminishing returns and potential context dilution beyond k=5.
 
 ## Enhancement Analysis
 
-The enhanced pipeline combines HyDE-style hypothetical answer generation with a reranking stage, yielding measurable gains in retrieval quality and downstream answer robustness. 
+The enhanced pipeline combines HyDE-style hypothetical answer generation with a reranking stage, to improve retrieval quality and downstream answer robustness. 
 
 On the MiniLM instruction runs, the enhanced variant improves mean F1 from 22.41 to 23.02 and raises context recall from 0.618 to 0.649 and precision from 0.807 to 0.859, alongside higher faithfulness (0.919 → 0.931) as computed from results/experiment.csv. 
 
-HyDE reframes the query into a semantically richer pseudo-answer, which expands the neighborhood of relevant evidence during retrieval, a behavior consistent with prior findings that generative query expansion sharpens dense retrieval without relevance labels [1]. The reranker concentrates top slots on the most pertinent passages, a well-documented effect of cross-encoder reranking that trades breadth for precision in the top-k [2][3]. The slight drop in EM (1.642 → 1.340) and answer relevancy (0.848 → 0.817) is consistent with a precision shift: stricter, semantically aligned contexts can reduce lexical overlap with ground truths, which hurts exact match and perceived topical breadth even as factual grounding improves [7]. 
+HyDE reframes the query into a semantically richer pseudo-answer, which expands the neighborhood of relevant evidence during retrieval. This is because generative query expansion sharpens dense retrieval without relevance labels [1]. The reranker concentrates top slots on the most pertinent passages. A well-documented effect of cross-encoder reranking is that it trades breadth for precision in the top-k [2][3]. The slight drop in EM (1.642 → 1.340) and answer relevancy (0.848 → 0.817) is consistent with a precision shift: stricter, semantically aligned contexts can reduce lexical overlap with ground truths, which hurts exact match and perceived topical breadth even as factual grounding improves. 
 
 Beyond pipeline steps, embedding choice remains a dominant factor. Switching from all-MiniLM to all-mpnet improved F1 from 22.41 to 24.19 on naive runs, with the best configuration (all-mpnet-base-v3, k=5) reaching F1 24.522 while maintaining strong faithfulness (0.941), aligned with MPNet’s stronger contextual token permutation pretraining [4].
 
@@ -185,4 +185,5 @@ Additionally, caching RAGAS evaluations for repeated queries or contexts could a
 5. Open the notebook in your browser. Select enhanced_rag.ipynb or naive_rag.ipynb and run the cells.
 
 ## AI Appendix
+/appendix/AI_appendix.md
 
